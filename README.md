@@ -51,6 +51,12 @@ Create `cacheman-memory` instance.
 var cache = new CachemanMemory();
 ```
 
+```javascript
+var cache = new CachemanMemory({
+	binary: true // prevents converting value from/to JSON
+});
+```
+
 ### cache.set(key, value, [ttl, [fn]])
 
 Stores or updates a value.

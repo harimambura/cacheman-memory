@@ -1,15 +1,15 @@
 {
-  "name": "cacheman-memory",
-  "version": "1.1.0",
+  "name": "cacheman-memory-ex",
+  "version": "1.1.1",
   "description": "In-memory caching library for Node.JS and also cache engine for cacheman",
-  "author": "Jonathan Brumley <cayasso@gmail.com>",
+  "author": "harimambura",
   "main": "./src/index",
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/cayasso/cacheman-memory.git"
+    "url": "git://github.com/harimambura/cacheman-memory.git"
   },
   "keywords": [
     "cache",

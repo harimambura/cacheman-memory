@@ -22,7 +22,8 @@ module.exports = class MemoryStore {
    */
 
   constructor(options = {}) {
-    this.client = lru(options.count || 100)
+		this.client = lru(options.count || 100)
+		this.binary = !!options.binary
   }
 
   /**
@@ -41,7 +42,7 @@ module.exports = class MemoryStore {
       return setImmediate(fn)
     }
     try {
-      val = JSON.parse(data.value)
+      val = this.binary ? data.value : JSON.parse(data.value)
     } catch (e) {
       return setImmediate(fn.bind(null, e))
     }
@@ -74,7 +75,7 @@ module.exports = class MemoryStore {
 
     try {
       data = {
-        value: JSON.stringify(val),
+        value: this.binary ? val : JSON.stringify(val),
         expire
       }
     } catch (e) {
@@ -122,7 +123,7 @@ module.exports = class MemoryStore {
     const keys = this.client.keys()
 
     this.client.forEach((value, key, cache) => {
-      entries.push({ key: key, data: JSON.parse(value.value) })
+      entries.push({ key: key, data: this.binary ? value.value : JSON.parse(value.value) })
     })
 
     fn(null, entries)
